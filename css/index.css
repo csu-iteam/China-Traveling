@@ -1,0 +1,161 @@
+.html,body{
+    margin:0;
+    padding:0;
+    display:flex;
+    min-height:100vh;
+    flex-direction: column;
+    background: url("") no-repeat;
+}
+
+div{
+    display: flex;
+    text-align: center;
+    border-radius: 5px;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-family: sans-serif;
+}
+
+.wallpaper{/*背景墙纸*/
+    background: url("../imag/mainBackground.jpg") no-repeat fixed;
+    height: 100vh;
+    width: 100%;
+    background-size: 100%;
+    border-radius: 0;
+    align-items: flex-start;
+}
+
+.blank{
+    flex-grow: 1;
+}
+
+.menu{/*主菜单区块*/
+    height: 40px;
+    width: 100%;
+    justify-content:space-between ;
+    align-items: center;
+    flex-basis: 100%;
+}
+
+.local{
+    width: 89px;
+    height: 40px;
+    line-height: 40px;
+    background-color: #dd3636;
+    color: white;
+    font-weight: bolder;
+    border-radius: 0 0 10px 0;
+
+}
+
+.menuButton{/*主菜单按钮*/
+    width: 89px;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 15px 0 0;
+
+    transition: 0.5s;
+}
+
+.menuButton:hover{
+    cursor: pointer;
+    background-color: #999999;
+}
+
+.signIn{
+    width: 89px;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 15px 0 0;
+    border: solid 2px #dd3636;
+    color: #dd3636;
+    font-weight: bolder;
+
+    transition: 0.5s;
+}
+
+.signIn:hover{
+    cursor: pointer;
+    background-color: white;
+}
+
+.titleBlock{/*主背景文字*/
+
+}
+
+.title{
+    width: 100%;
+    height: 90px;
+    font-size: 90px;
+    line-height: 90px;
+    font-family: "Sitka Display";
+}
+
+.description{
+    width: 100%;
+}
+
+.readMore{
+    width: 200px;
+    height: 40px;
+    line-height: 40px;
+    background-color: #31353c;
+    color: white;
+    transition: 0.5s;
+}
+
+.readMore:hover{
+    cursor: pointer;
+    background-color: #53575f;
+}
+
+.searchMenu{/*搜索区块*/
+    width: 759px;
+    height:60px;
+    align-self: flex-end;
+    margin-bottom: 20px;
+    align-items: center;
+    background-color: white;
+}
+
+.searchBlock{/*下拉查找单元*/
+    width: 130px;
+    height: 38px;
+    margin:0 10px;
+    border-radius: 0;
+    border-right: solid #999999;
+}
+
+.label{
+    width: 100%;
+    color: #9aa6bc;
+    font-size: x-small;
+    text-align: left;
+}
+
+.sign{
+    width: 24px;
+    height: 24px;
+}
+
+.select{
+    width: 90px;
+    height:24px;
+    line-height: 24px;
+    border: none;
+}
+
+.searchButton{
+    width: 150px;
+    height: 60px;
+    line-height: 60px;
+    background-color: #dd3636;
+    font-weight: bolder;
+    color: white;
+    transition: 0.5s;
+}
+
+.searchButton:hover{
+    background-color: #ff5858;
+    cursor: pointer;
+}
