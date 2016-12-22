@@ -1,10 +1,10 @@
-.html,body{
-    margin:0;
-    padding:0;
-    display:flex;
-    min-height:100vh;
+.html,body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
     flex-direction: column;
-    background: url("") no-repeat;
+    background: #31353c url("") no-repeat;
 }
 
 div{
@@ -16,17 +16,43 @@ div{
     font-family: sans-serif;
 }
 
+a{
+    display: flex;
+}
+
+p{
+
+}
+
+image{
+    display: flex;
+    border-radius: 5px;
+}
+
+.shade{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    z-index: 1;
+    background-color: black;
+    opacity: 0;
+}
+
 .wallpaper{/*背景墙纸*/
-    background: url("../imag/mainBackground.jpg") no-repeat fixed;
+    background:#31353c url("../imag/mainBackground.jpg") no-repeat fixed;
     height: 100vh;
     width: 100%;
     background-size: 100%;
     border-radius: 0;
     align-items: flex-start;
+    position: relative;
+    z-index: 2;
 }
 
-.blank{
+
+.blank{/*补足布局*/
     flex-grow: 1;
+    min-width: 50px;
 }
 
 .menu{/*主菜单区块*/
@@ -70,7 +96,6 @@ div{
     border: solid 2px #dd3636;
     color: #dd3636;
     font-weight: bolder;
-
     transition: 0.5s;
 }
 
@@ -79,8 +104,53 @@ div{
     background-color: white;
 }
 
-.titleBlock{/*主背景文字*/
+.signInBlock{
+    height: 100vh;
+    width: 300px;
+    align-self: flex-end;
+    align-items: flex-start;
+    justify-content: flex-start;
+    align-content: flex-start;
+    position: absolute;
+    z-index: 0;
+    right: 0;
+}
 
+.signItem{
+    width: 100%;
+    height: 38px;
+    border-radius: 0;
+    align-items: center;
+    flex-grow: 0;
+}
+
+.signButton{
+    width: 50px;
+    height: 30px;
+    line-height: 30px;
+    margin: 4px 10px;
+    border-right: solid #9aa6bc thin;
+    border-radius: 0;
+    transition: 0.5s;
+}
+
+.signButton:hover{
+    cursor: pointer;
+    background-color: #ff5858;
+}
+
+.signLabel{
+    width: 60px;
+    margin: 7px 4px;
+    color: #999999;
+}
+
+.signInText{
+    width: 135px;
+    margin: 7px 3px;
+    border-radius: 5px;
+    border: solid thin #9aa6bc;
+    opacity: 0.8;
 }
 
 .title{
@@ -159,3 +229,250 @@ div{
     background-color: #ff5858;
     cursor: pointer;
 }
+
+/*正文部分*/
+
+.background{
+   //background:  -moz-linear-gradient(top,rgba(255,255,255,0)0%,rgba(255,255,255,0.9)40%);
+    background-color: white;
+    border-radius: 0;
+    width: 100%;
+}
+
+.main{
+    width: 70%;
+    //box-shadow: 0 0 5px 5px #9aa6bc;
+    border-radius: 0;
+    padding:10px 20px;
+}
+
+.textBlock{
+    align-content: flex-start;
+    justify-content: space-between;
+    width: 48%;
+    margin: 10px;
+}
+
+.h1{/*最大的主标题*/
+    font-size: 48px;
+    width: 100%;
+    height: 64px;
+    line-height: 64px;
+    margin: 20px 0;
+
+}
+
+.h2{/*次级标题*/
+    font-size: 30px;
+    height: 40px;
+    line-height:40px;
+    margin: 0 10px 10px 10px;
+}
+
+.line{/*补满一行的自适应线*/
+    height: 0;
+    border: solid #53575f thin;
+    flex-grow: 1;
+    margin: 19px 15px;
+}
+
+.lineS{/*占一行的短线*/
+    height: 0;
+    width: 30px;
+    border: solid thin #53575f;
+    margin: 7px 148px 7px 0;
+}
+
+.h3{/*介绍文字*/
+    margin: 0 10px;
+    width: 100%;
+    color: #9aa6bc;
+    text-align: left;
+    justify-content: flex-start;
+}
+
+.h4{/*小标题*/
+    text-align: left;
+    font-size: 23px;
+    height: 25px;
+    line-height: 25px;
+    margin: 10px 10px 0 10px;
+}
+
+.smallTextBlock{
+    width: 50%;
+    height: 100%;
+    align-content: flex-start;
+}
+
+.MReadMore{
+    color: #dd3636;
+}
+
+.viewMiddle{/*中等大小图片*/
+    width: 368px;
+    height: 207px;
+    margin: 10px 30px;
+    overflow: visible;
+    background-color: #bcc8de;
+    border-radius: 0;
+}
+
+.pictureMiddle{
+    width: 368px;
+    height: 207px;
+    background:white url("") no-repeat;
+    position: relative;
+    bottom: -25px;
+    right: -25px;
+    box-shadow: 2px 2px 2px 1px #9aa6bc;
+    overflow: hidden;
+    border-radius: 0;
+    justify-content: flex-start;
+}
+
+.viewSmall{/*小图片*/
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+    border-radius: 0;
+}
+
+.viewBig{/*大图片*/
+    width: 100%;
+    height: 504px;
+    padding: 20px 40px;
+    background: url("../imag/PT3B.jpg") no-repeat;
+}
+
+.viewSquare{/*正方形图片*/
+    width: 220px;
+    height: 180px;
+    margin: 10px;
+    border-radius: 0;
+    box-shadow: 2px 2px 2px 1px #9aa6bc;
+    background-color: chartreuse;
+}
+
+.MButton{/*主界面的按钮*/
+    width: 200px;
+    height: 40px;
+    background-color: #dd3636;
+    color: white;
+    font-weight: bolder;
+    line-height: 40px;
+    transition: 0.5s;
+    margin: 10px 200px;
+}
+
+.MButton:hover{
+    cursor: pointer;
+    background-color: #ff5858;
+}
+
+.depart{
+    width: 100%;
+    height: 50px;
+}
+
+.modelBlock{
+    width: 400px;
+    margin: 10px;
+    align-content: flex-start;
+    border-radius: 0;
+    border: solid #bcc8de thin;
+    box-shadow: 2px 2px 2px 1px #bcc8de;
+}
+
+.pictureSort{
+    width: 368px;
+    height: 207px;
+    position: relative;
+    border-radius: 0;
+    top:0;
+}
+
+.point{
+    width: 0;
+    height:0;
+    border: solid #31353c;
+    margin: 9px;
+}
+
+.stressText{
+    width: 90%;
+    height: 20px;
+    line-height: 20px;
+    color: #31353c;
+    font-family: "Calibri Light";
+}
+
+.buttonGroup{
+    justify-content: center;
+    align-content: center;
+    width: 368px;
+    height: 30px;
+    margin: 20px 65px 10px 0;
+}
+
+.buttonPoint{
+    width: 5px;
+    height:5px;
+    border: solid 2px #dd3636;
+    margin: auto 9px;
+    border-radius: 10px;
+    background-color: #dd3636;
+    transition: 0.1s;
+}
+
+.buttonPoint:hover{
+    cursor: pointer;
+    border-width: 4px;
+}
+
+.bottomBlock{
+    width: 100%;
+    border-radius: 0;
+
+}
+
+.bottom{
+    background-color: #31353c;
+    width: 100%;
+    height: 50px;
+    border-radius: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.copyRight{
+    height: 50px;
+    color: #999999;
+    font-size: 14px;
+    line-height: 50px;
+    margin: 0 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -10,7 +10,37 @@
     <title>China-Traveling</title>
 </head>
 <body>
-<div class="wallpaper">
+<div class="signInBlock">
+    <div class="signItem" style="justify-content: flex-start;background-color: #dd3636">
+        <div class="signButton" id="return">
+            返回
+        </div>
+    </div>
+    <div class="signItem" style="height: 72px">
+        <div style="height: 72px;font-size: 40px;line-height: 72px">LOGO</div>
+    </div>
+    <div class="signItem">
+        <label class="signLabel" for="userName">
+            用户名
+        </label>
+        <input type="text" id="userName" class="signInText">
+        <a href="#" style="margin-left: 7px">新用户？</a>
+    </div>
+    <div class="signItem">
+        <label class="signLabel" for="password">
+            密　码
+        </label>
+        <input type="password" id="password" class="signInText">
+        <a href="#" style="margin-left: 7px">忘记密码</a>
+    </div>
+    <div class="signItem">
+        <div class="signIn" style="width: 145px;margin-right: 0">
+            登录
+        </div>
+    </div>
+</div>
+<div class="shade" id="shade"></div>
+<div class="wallpaper" id="wallpaper" style="border-radius: 0">
     <div class="menu">
         <div class="local">
             China
@@ -33,7 +63,7 @@
         <div class="menuButton">
             Contact us
         </div>
-        <div class="signIn">
+        <div class="signIn" id="signIn">
             Sign in
         </div>
 
@@ -43,10 +73,8 @@
             China Traveling
         </div>
         <div class="description">
-            <p style="width:60%;">The important thing in life is to have a great aim, and the determination to attain
-                it.
-                asfbsajbfasfbamfbasfjasbfmsabfasmfbamfbasmfbsfmabfasfbsajbfasfbamfbasfjasbfmsabfas
-                asfbsajbfasfbamfbasfjasbfmsabfasmfbamfbasmfbsfmabf
+            <p style="width:60%; min-height: 120px">
+                The important thing in life is to have a great aim, and the determination to attain it.
             </p>
         </div>
         <div class="readMore">
@@ -91,9 +119,211 @@
             </select>
         </div>
         <div class="searchButton">
-            Search
+            SEARCH
         </div>
     </div>
 </div>
+<div class="background">
+    <div class="main">
+        <div class="depart"></div>
+
+        <p class="h1">
+            About Wonderful Place
+        </p>
+        <p class="h3" style="margin-bottom: 50px;text-align: center">
+            We are gaining something, or losing something, or losing something, everyday. Even when our position and our
+            character seem to remain precisely the same, they are changing. For the mereadvance of time is a change.
+        </p>
+
+        <div class="viewMiddle">
+            <img class="pictureMiddle" src="imag/middle/MiddleOne.jpg">
+        </div>
+        <div class="textBlock">
+            <p class="h2">
+                Awesome Nature
+            </p>
+            <div class="line"></div>
+            <p class="h3">
+                It is not the same thing to have a bare field in January and in July. The season makes the difference.
+                The limitations that are childlike in the child are childish in the man.
+                <a class="MReadMore" href="#">Read More</a>
+            </p>
+        </div>
+
+        <div class="depart"></div>
+
+        <div class="textBlock">
+            <p class="h2">
+                Awesome Nature
+            </p>
+            <div class="line"></div>
+            <p class="h3">
+                Everything that we do is a step in one direction or another. Even the failure to do something is in
+                itself a deed. it sets us forward or backward. the action of the negative pole of a magnetic needle is
+                just as real as the action of the positive pole. To decline is to accept--the other alternative.
+                <a class="MReadMore" href="#">Read More</a>
+            </p>
+        </div>
+        <div class="viewMiddle">
+            <img class="pictureMiddle" src="imag/middle/MiddleTwo.jpg">
+        </div>
+
+        <div class="depart"></div>
+
+        <div class="h1">
+            Regions Traveling
+        </div>
+        <div class="h3" style="text-align: center">
+            Are you nearer to your port today than you were yesterday? yes, you must be a little nearer to some port or
+            other for since your ship was first launched upon the sea of life, you have never been still for a single
+            monment.
+        </div>
+
+        <div class="depart"></div>
+
+        <div class="modelBlock">
+            <img class="viewSmall" src="imag/small/SmallOne.jpg">
+            <div class="smallTextBlock">
+                <div class="h4">
+                    Hedmark
+                </div>
+                <div class="blank"></div>
+                <div class="lineS"></div>
+                <div class="h3">
+                    Wherever you are, and whoever you may be, there is one thing in which you and I are just alike at
+                    <a href="#" class="MReadMore">View More</a>
+                </div>
+            </div>
+        </div>
+        <div class="modelBlock">
+            <img class="viewSmall" src="imag/small/SmallTwo.jpg">
+            <div class="smallTextBlock">
+                <div class="h4">
+                    Hedmark
+                </div>
+                <div class="blank"></div>
+                <div class="lineS"></div>
+                <div class="h3">
+                    We are gaining something, or losing something, or losing something, everyday. Even when our position
+                    <a href="#" class="MReadMore">View More</a>
+                </div>
+            </div>
+        </div>
+        <div class="modelBlock">
+            <div class="smallTextBlock">
+                <div class="h4">
+                    Hedmark
+                </div>
+                <div class="blank"></div>
+                <div class="lineS"></div>
+                <div class="h3">
+                    We are gaining something, or losing something, or losing something, everyday. Even when our position
+                    <a href="#" class="MReadMore">View More</a>
+                </div>
+            </div>
+            <img class="viewSmall" src="imag/small/SmallThree.jpg">
+        </div>
+        <div class="modelBlock">
+            <div class="smallTextBlock">
+                <div class="h4">
+                    Hedmark
+                </div>
+                <div class="blank"></div>
+                <div class="lineS"></div>
+                <div class="h3">
+                    We are gaining something, or losing something, or losing something, everyday. Even when our position
+                    <a href="#" class="MReadMore">View More</a>
+                </div>
+            </div>
+            <img class="viewSmall" src="imag/small/SmallFour.jpg">
+        </div>
+        <div class="MButton" id="allRegions">ALL REGIONS</div>
+
+        <div class="depart"></div>
+
+        <div class="h1">
+            Awesome Tours
+        </div>
+        <div class="viewBig">
+            <div class="blank"></div>
+            <div class="viewMiddle" style="margin: 25px;border: solid 2px #9aa6bc;background-color: transparent">
+                <div class="pictureMiddle"
+                     style="border: none;box-shadow: none;border-radius: 0;top:-80px;right:-55px;padding-top: 45px;align-content: center">
+                    <div class="h2">
+                        Extreme Challenge
+                    </div>
+                    <div class="line"></div>
+                    <div class="h3">
+                        We are gaining something, or losing something, or losing something, everyday. Even when our
+                        position and our character seem to remain precisely the same,
+                        July.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="viewSquare">
+
+        </div>
+        <div class="viewSquare">
+
+        </div>
+        <div class="viewSquare">
+
+        </div>
+        <div class="MButton" id="allTours">ALL　TOURS</div>
+
+        <div class="depart"></div>
+
+        <div class="h1">Our Hotels</div>
+
+        <div class="textBlock">
+            <div class="h2">
+                Comfortable Rooms
+            </div>
+            <div class="line"></div>
+
+            <div class="h3">
+                We are gaining something, or losing something, or losing something, everyday. Even when our position and
+                our character seem to remain precisely the same, they are changing. For the mereadvance of time is a
+                change.
+                <div class="point"></div>
+                <div class="stressText"> We are gaining something, or losing something</div>
+                <div class="point"></div>
+                <div class="stressText">We are gaining something, or losing something</div>
+            </div>
+        </div>
+        <div class="viewMiddle">
+            <div class="pictureMiddle" style="left: -25px;flex-wrap: nowrap">
+                <img class="pictureSort" src="imag/middle/MiddleOne.jpg" id="item1">
+                <img class="pictureSort" src="imag/middle/MiddleTwo.jpg" id="item2">
+                <img class="pictureSort" src="imag/middle/MiddleThree.jpg" id="item3">
+            </div>
+        </div>
+        <div class="blank"></div>
+        <div class="buttonGroup">
+            <div class="buttonPoint" style="height: 10px;width: 10px;border-width: 2px;background-color: white"
+                 id="point1"></div>
+            <div class="buttonPoint" id="point2"></div>
+            <div class="buttonPoint" id="point3"></div>
+        </div>
+    </div>
+    <div class="bottomBlock">
+        <div class="main">
+            <div class="MButton" id="allHotels">ALL HOTELS</div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="copyRight">
+            Copyright @ 2016-China Travel Site
+        </div>
+        <div class="copyRight">
+            SiCat & Dove & Pikachu | Copyright
+        </div>
+    </div>
+</div>
+
 </body>
+<script src="js/jquery-3.1.0.min.js" type="text/javascript"></script>
+<script src="js/index.js" type="text/javascript"></script>
 </html>
