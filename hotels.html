@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hotels</title>
+    <style>
+        body, div {
+            margin: 0;
+            padding: 0;
+        }
+
+        .hotel-container {
+            position: relative;
+            height: 100vh;
+            background-color: rgb(234,238,242);
+            display: flex;
+            justify-content: space-around;
+            flex-wrap:wrap;
+            max-width: 49vw;
+        }
+        .hotel-container .hotel{
+            width: 300px;
+            margin: 10px;
+            flex-grow: 1;
+        }
+        .hotel-container .hotel .price{
+            position: absolute;
+            right: 0px;
+            top: 50px;
+            padding: 5px;
+            background-color: white;
+            color: red;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        .hotel-container .hotel .detail{
+            background-color: white;
+            /*height: 200px;*/
+            overflow: hidden;
+            text-overflow:ellipsis;
+            padding: 10px;
+        }
+        .hotel-container .hotel .detail .title{
+            padding-top: 30px;
+            font-weight: bold;
+        }
+        .hotel-container .hotel .detail .addr{
+            white-space:nowrap;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            width: 7rem;
+        }
+        #baidu-map-container {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 50vw;
+        }
+        .icon{
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            background-color: white;
+        }
+        .arrow{
+            border-radius: 30px;
+        }
+        .arrow-click{
+            background-color: red;
+            color: white;
+        }
+        .add{
+            border-radius: 30px 30px 0 0;
+        }
+        .remove{
+            border-radius: 0 0 30px 30px
+        }
+        .flex-h-center{
+            display: flex;
+            justify-content: center;
+        }
+        .flex-v-center{
+            display: flex;
+            align-items: center
+        }
+    </style>
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=2.0&ak=7WeGSBaEkityvNmf7ZatpXTmja6MF9wY"></script>
+    <script src="js/jq/jquery.js"></script>
+    <script src="js/vue/vue.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-default/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+<div>
+</div>
+<div id="app">
+    <div class="hotel-container">
+        <div v-for="hotel in hotels.list" class="hotel">
+            <div style="display: flex;position: relative">
+                <img :src="hotel.img" style="flex: auto">
+                <div class="price">${{hotel.price}}</div>
+            </div>
+            <div class="detail">
+                <div class="title">{{hotel.hotelName}} </div>
+                <div style="display: flex;justify-content: space-between;margin-bottom: 10px;margin-top: 10px">
+                    <div class="flex-v-center">
+                        <i class="material-icons" style="color: red">location_on</i>
+                        <div class="addr">{{hotel.address}}</div>
+                    </div>
+                    <el-rate
+                            v-model="hotel.rate"
+                            disabled
+                            text-color="#ff9900"
+                            text-template="{value}">
+                    </el-rate>
+                </div>
+                <div>
+                    {{hotel.intro.substr(0,100)}}...
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div id="baidu-map-container">
+
+</div>
+<script>
+    var map = new BMap.Map("baidu-map-container");
+    var point = new BMap.Point(112.945333, 28.233971);  // 创建点坐标
+    map.centerAndZoom(point, 15);                 // 初始化地图，设置中心点坐标和地图级别
+
+    var local = new BMap.LocalSearch(map, {
+        renderOptions:{map: map}
+    });
+    var search_key="常德酒店"
+    local.search(search_key);
+</script>
+<!--创建百度地图的自定义控件-->
+<script>
+    var startX = 30
+//    第一是点击后会改变方向的按钮
+    // 定义一个控件类,即function
+    function ZoomControl_arrow_icon(){
+        // 默认停靠位置和偏移量
+        this.defaultAnchor = BMAP_ANCHOR_TOP_LEFT;
+        this.defaultOffset = new BMap.Size(startX, 10);
+    }
+
+    // 通过JavaScript的prototype属性继承于BMap.Control
+    ZoomControl_arrow_icon.prototype = new BMap.Control();
+
+    // 自定义控件必须实现自己的initialize方法,并且将控件的DOM元素返回
+    // 在本方法中创建个div元素作为控件的容器,并将其添加到地图容器中
+    ZoomControl_arrow_icon.prototype.initialize = function(map){
+        // 创建一个DOM元素
+        var div = document.createElement("div");
+        div.className="arrow icon"
+        var i = document.createElement("i")
+        i.className="material-icons"
+        i.appendChild(document.createTextNode("chevron_left"))
+        div.appendChild(i)
+        // 绑定事件,点击一次放大两级
+        div.onclick = function(e){
+            var style = document.getElementById("baidu-map-container").style
+            if(div.firstElementChild.textContent==="chevron_right"){
+                div.firstElementChild.textContent="chevron_left"
+                div.className=" arrow icon"
+                style.left = ""
+                style.right = 0
+                style.width="50vw"
+            }else {
+                div.firstElementChild.textContent="chevron_right"
+                div.className="arrow-click arrow icon"
+                style.left = 0
+                style.right = 0
+                style.width="100vw"
+            }
+            local.search(search_key);
+        }
+        // 添加DOM元素到地图中
+        map.getContainer().appendChild(div);
+        // 将DOM元素返回
+        return div;
+    }
+    // 创建控件
+    var myZoomCtrl = new ZoomControl_arrow_icon();
+    // 添加到地图当中
+    map.addControl(myZoomCtrl);
+
+//    第二个是放大地图的按钮
+    // 定义一个控件类,即function
+    function ZoomControl_add_icon(){
+        // 默认停靠位置和偏移量
+        this.defaultAnchor = BMAP_ANCHOR_TOP_LEFT;
+        this.defaultOffset = new BMap.Size(startX, 50);
+    }
+
+    // 通过JavaScript的prototype属性继承于BMap.Control
+ZoomControl_add_icon.prototype = new BMap.Control();
+
+    // 自定义控件必须实现自己的initialize方法,并且将控件的DOM元素返回
+    // 在本方法中创建个div元素作为控件的容器,并将其添加到地图容器中
+ZoomControl_add_icon.prototype.initialize = function(map){
+        // 创建一个DOM元素
+        var div = document.createElement("div");
+        div.className="add icon"
+        var i = document.createElement("i")
+        i.className="material-icons"
+        i.appendChild(document.createTextNode("add"))
+        div.appendChild(i)
+        // 绑定事件,点击一次放大两级
+        div.onclick = function(e){
+            map.setZoom(map.getZoom() + 1);
+        }
+        // 添加DOM元素到地图中
+        map.getContainer().appendChild(div);
+        // 将DOM元素返回
+        return div;
+    }
+    // 创建控件
+    var myZoomCtrl = new ZoomControl_add_icon();
+    // 添加到地图当中
+    map.addControl(myZoomCtrl);
+
+//第三个是缩小地图的按钮
+    // 定义一个控件类,即function
+    function ZoomControl_remove_icon(){
+        // 默认停靠位置和偏移量
+        this.defaultAnchor = BMAP_ANCHOR_TOP_LEFT;
+        this.defaultOffset = new BMap.Size(startX, 75);
+    }
+
+    // 通过JavaScript的prototype属性继承于BMap.Control
+ZoomControl_remove_icon.prototype = new BMap.Control();
+
+    // 自定义控件必须实现自己的initialize方法,并且将控件的DOM元素返回
+    // 在本方法中创建个div元素作为控件的容器,并将其添加到地图容器中
+ZoomControl_remove_icon.prototype.initialize = function(map){
+        // 创建一个DOM元素
+        var div = document.createElement("div");
+        div.className="remove icon"
+        var i = document.createElement("i")
+        i.className="material-icons"
+        i.appendChild(document.createTextNode("remove"))
+        div.appendChild(i)
+        // 绑定事件,点击一次放大两级
+        div.onclick = function(e){
+            map.setZoom(map.getZoom() - 1);
+        }
+        // 添加DOM元素到地图中
+        map.getContainer().appendChild(div);
+        // 将DOM元素返回
+        return div;
+    }
+    // 创建控件
+    var myZoomCtrl = new ZoomControl_remove_icon();
+    // 添加到地图当中
+    map.addControl(myZoomCtrl);
+</script>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            clicked: false,
+            hotels:{
+                list:[{
+                    hotelName:"",
+                    img:"",
+                    intro:"",
+                    rate:2,
+                    price:100
+                }],
+                page:"1"
+            }
+        },
+        methods: {
+            btnClick: function () {
+                var style = document.getElementById("baidu-map-container").style
+                var btn_style=document.getElementById("btn").style
+                if (this.clicked) {
+                    style.left = 0
+                    style.right = 0
+                    style.width="100vw"
+                    btn_style.left=0
+                } else {
+                    style.left = ""
+                    style.right = 0
+                    style.width="50vw"
+                    btn.left="50vw"
+                }
+                this.clicked = !this.clicked
+            }
+        }
+    })
+</script>
+<script>
+    $.ajax( {
+        url:'http://route.showapi.com/405-5?showapi_appid=29399&showapi_sign=ca4908470e234ec698869edf893acee7&cityId=45&comeDate=20161223&leaveDate=20161224',
+        data:{
+            pageSize:8
+        },
+        type:'get',
+        cache:false,
+        dataType:'json',
+        success:function(data) {
+            console.log(data)
+            app.hotels=data.showapi_res_body
+//            console.log(app.hotels.list.length)
+//            计算星级
+            for(let i = 0 ; i<app.hotels.list.length;i++){
+                app.hotels.list[i].rate=5*parseFloat(app.hotels.list[i].commentGood)/parseFloat(app.hotels.list[i].commentTotal)
+//                console.log(app.hotels.list[i].rate
+                $.ajax({
+                    url:'http://route.showapi.com/405-8',
+                    data:{
+                        showapi_appid:29399,
+                        showapi_sign:'ca4908470e234ec698869edf893acee7',
+                        hotelId:app.hotels.list[i].hotelId,
+                        comeDate:20161223,
+                        leaveDate:20161224
+                    },
+                    type:'get',
+                    cache:false,
+                    dataType:'json',
+                    success:function (data) {
+                        console.log(data)
+                        app.hotels.list[i].price=data.showapi_res_body.hotel.hotelRoomList[0].pricePolicyList[0].roomAdviceAmount
+//                        console.log(data.showapi_res_body.hotel.hotelRoomList[0].pricePolicyList[0].roomAdviceAmount)
+//                        console.log(i,app.hotels.list[i].price)
+//                        为了把数据更新上去，触发vue的自动更新
+                        app.hotels.list[i].hotelName+=' '
+                    }
+                })
+            }
+//            alert("0k")
+        },
+        error : function() {
+            // view("异常！");
+            alert("异常！");
+        }
+    });
+
+</script>
+</body>
+</html>
